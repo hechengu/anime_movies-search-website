@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>animated_movies</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+    .bg{
+      height:9600px;
+      position:relative;
+    }
+
+    .bg .other-content{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      text-align:center;
+      z-index:1;
+      font-size:30px;
+      color:black;
+    }
+
+    .bg .slide{
+      z-index:-1;
+      position:absolute;
+      width:100%;
+      top:0;
+      left:0;
+      height:100%;
+      transition:opacity 1s ease-in-out;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity:0;
+    }
+    .bg .slide.show{
+      opacity:0.5;
+    }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="bg">
+      <div class = "other-content">Welcome to Animated Movies Browser!</div>
+      <div class = "slide show" style="background-image: url('images/20986.jpg'); background-repeat: no-repeat;background-attachment: fixed;"></div>
+      <div class = "slide" style="background-image: url('images/20990.jpg');background-repeat: no-repeat;background-attachment: fixed;v"></div>
+      <div class = "slide" style="background-image: url('images/20998.jpg');background-repeat: no-repeat;background-attachment: fixed;"></div>
+      <div class = "slide" style="background-image: url('images/21025.jpg');background-repeat: no-repeat;background-attachment: fixed;"></div>
+      <div class = "slide" style="background-image: url('images/21047.jpg');background-repeat: no-repeat;background-attachment: fixed;"></div>
+    </div>
+
+    <script>
+    function cycleBackgrounds() {
+      var index = 0;
+      $imageEls = $('.bg .slide'); // Get the images to be cycled.
+      setInterval(function () {
+        // Get the next index.  If at end, restart to the beginning.
+        index = index + 1 < $imageEls.length ? index + 1 : 0;
+        // Show the next image.
+        $imageEls.eq(index).addClass('show');
+        // Hide the previous image.
+        $imageEls.eq(index - 1).removeClass('show');
+      }, 5000);
+    };
+    // Document Ready.
+    $(function () {
+      cycleBackgrounds();
+    });
+    </script>
+
+    <div class = "root" id="root"></div>
+
+  </body>
+</html>
